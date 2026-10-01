@@ -1,0 +1,11 @@
+# 공통 의존성 (PyTorch / SAM 2 는 제외 - OS별로 설치 방식이 다름)
+# 설치 순서와 방법: docs/SETUP_MAC.md, docs/SETUP_WINDOWS.md
+numpy
+opencv-python-headless
+pillow
+tqdm
+pyyaml
+pymatting
+transformers>=4.45
+huggingface_hub
+pytest

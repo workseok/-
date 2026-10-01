@@ -1,0 +1,17 @@
+# videomatte 설정 예시. CLI 인자가 이 파일보다 우선합니다.
+#   videomatte input.mp4 --config config.yaml
+# 키는 CLI 옵션 이름과 같습니다 (하이픈/밑줄 모두 가능).
+prompt: person
+select: largest          # largest | all | 인덱스(면적 내림차순)
+sam_model: small         # tiny | small | base_plus | large
+sam_max_side: 1024
+refiner: none            # none | vitmatte | birefnet  (THIRD_PARTY_LICENSES.md 참고)
+temporal_smooth: 0.3
+fg_estimate: ml          # ml | fast | none
+despill: none            # none | green | blue
+bg: "color:#00ff00"
+feather: 0.0
+color_match: 0.0
+chunk_size: 150
+refine_max_side: 1080
+device: auto

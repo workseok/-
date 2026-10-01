@@ -89,10 +89,10 @@ class Sam2Segmenter:
 
     @staticmethod
     def _frame_hw(frames_dir: Path) -> tuple[int, int]:
-        import cv2
+        from . import imgio
 
         first = sorted(Path(frames_dir).glob("*.jpg"))[0]
-        h, w = cv2.imread(str(first)).shape[:2]
+        h, w = imgio.imread(first).shape[:2]
         return h, w
 
 

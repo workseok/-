@@ -216,7 +216,10 @@ def concat_and_mux(segments: Sequence[Path], audio_src: Path | None, out: Path, 
     ffmpeg, _ = require_ffmpeg()
     out.parent.mkdir(parents=True, exist_ok=True)
     lst = work / "concat.txt"
-    lst.write_text("".join(f"file '{Path(s).resolve().as_posix()}'\n" for s in segments), encoding="utf-8")
+    def esc(p: Path) -> str:  # concat demuxer: 작은따옴표 이스케이프
+        return Path(p).resolve().as_posix().replace("'", "'\\''")
+
+    lst.write_text("".join(f"file '{esc(s)}'\n" for s in segments), encoding="utf-8")
     base = [ffmpeg, "-v", "error", "-nostdin", "-y", "-f", "concat", "-safe", "0", "-i", lst]
     tmp = out.with_name(out.stem + ".partial" + out.suffix)
     if audio_src is None:

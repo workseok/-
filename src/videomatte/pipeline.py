@@ -13,7 +13,7 @@ import numpy as np
 from tqdm import tqdm
 
 from . import composite as comp
-from . import matting
+from . import imgio, matting
 from .config import Config
 from .detect import Detection, Target, parse_box, parse_points, select_detections
 from .errors import DetectionError, VideomatteError
@@ -240,7 +240,7 @@ class Pipeline:
                 if want_prores:
                     writers[1].write(np.dstack([(np.clip(fg, 0, 1) * 255 + 0.5).astype(np.uint8), a8]))
                 if want_png:
-                    cv2.imwrite(str(png_dir / f"{start + i:06d}.png"), a8)
+                    imgio.imwrite(png_dir / f"{start + i:06d}.png", a8)
                 n_read += 1
                 bar.update(1)
             if n_read == 0:

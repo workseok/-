@@ -11,6 +11,7 @@ import cv2
 import numpy as np
 
 from .errors import ConfigError
+from . import imgio
 from .io_video import read_background_video
 
 log = logging.getLogger(__name__)
@@ -103,7 +104,7 @@ class ColorBg:
 
 class ImageBg:
     def __init__(self, path: Path):
-        img = cv2.imread(str(path), cv2.IMREAD_COLOR)
+        img = imgio.imread(path)
         if img is None:
             raise ConfigError(f"배경 이미지를 읽을 수 없습니다: {path}")
         self.img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)

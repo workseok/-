@@ -187,3 +187,20 @@ def test_cli_doctor_and_bad_input(tmp_path, capsys):
     assert "ffmpeg" in capsys.readouterr().out
     assert main([str(tmp_path / "none.mp4")]) == 1
     assert "입력 파일이 없습니다" in capsys.readouterr().err
+
+
+def test_unicode_and_space_paths(clip, bg_image, tmp_path, fakes):
+    """한글/공백/작은따옴표 경로 (Windows 한글 경로 이슈 방어: 입력, 배경 이미지, 출력, 작업 폴더, 알파 PNG)."""
+    import shutil
+
+    d = tmp_path / "한글 폴더's test"
+    d.mkdir()
+    c, b = d / "입력 영상.mp4", d / "배경 이미지.png"
+    shutil.copy(clip, c)
+    shutil.copy(bg_image, b)
+    det, seg = fakes
+    out = d / "결과 영상.mp4"
+    Pipeline(make_cfg(c, out, bg=str(b), export_alpha="png", max_frames=14, work_dir=d / "작업"), det, seg).run()
+    info, fr = frames_of(out)
+    assert len(fr) == 14 and info.has_audio
+    assert len(list((d / "결과 영상_alpha").glob("*.png"))) == 14

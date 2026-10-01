@@ -42,7 +42,7 @@
 
 사용 금지: Robust Video Matting(GPL-3.0), Ultralytics YOLO(AGPL-3.0), BRIA RMBG 계열, MatAnyone(비상업).
 **상세 근거, 확인일, 미확인 사유: [THIRD_PARTY_LICENSES.md](THIRD_PARTY_LICENSES.md)**
-이 저장소 자체 코드의 라이선스는 아직 정해지지 않았습니다(LICENSE 파일 없음).
+이 저장소 자체 코드는 [MIT 라이선스](LICENSE)입니다. 서드파티 구성요소는 각자의 라이선스를 따릅니다.
 
 ## 설치
 

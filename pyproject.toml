@@ -7,6 +7,7 @@ name = "videomatte"
 version = "0.1.0"
 description = "영상에서 대상을 자동 검출/분할하여 알파 매트를 추출하고 새 배경과 합성하는 CLI"
 readme = "README.md"
+license = { file = "LICENSE" }
 requires-python = ">=3.10"
 # PyTorch 와 SAM 2 는 OS/GPU 별 설치 방식이 달라 여기에 넣지 않았습니다.
 # docs/SETUP_MAC.md, docs/SETUP_WINDOWS.md 참고.
